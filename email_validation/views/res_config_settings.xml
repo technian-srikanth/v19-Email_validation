@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_res_config_settings_inherit_contact_limit"
+            model="ir.ui.view">
+
+        <field name="name">res.config.settings.view.form.inherit.contact.limit</field>
+
+        <field name="model">res.config.settings</field>
+
+        <field name="inherit_id"
+               ref="base.res_config_settings_view_form"/>
+
+        <field name="arch" type="xml">
+
+            <xpath expr="//block[@name='contacts_setting_container']//setting[@id='partner_autocomplete']"
+                   position="after">
+
+                <setting id="contact_limit_setting"
+                         string="Contact Limit"
+                         help="Set contact processing limit">
+
+                    <field name="contact_limit"/>
+
+                </setting>
+                <setting id="contact_batch_setting"
+                         string="Contact Batch"
+                         help="Set contact processing Batch">
+
+                    <field name="batch"/>
+
+                </setting>
+                <setting id="contact_state_setting"
+                         string="Contact State"
+                         help="Set contact processing State">
+                    <field name="validation_state"/>
+
+                </setting>
+
+            </xpath>
+
+        </field>
+
+    </record>
+
+</odoo>

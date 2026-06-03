@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_web_domain" name="web domain" action="action_web_domain" parent="contacts.menu_contacts"/>
+</odoo>

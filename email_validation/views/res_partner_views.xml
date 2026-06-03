@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_partner_form_email_validation" model="ir.ui.view">
+        <field name="name">res.partner.form.email.validation</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='function']" position="before">
+                <field name="first_name"/>
+                <field name="last_name"/>
+            </xpath>
+
+            <xpath expr="//field[@name='function']" position="after">
+                <field name="linked_in"/>
+                <field name="industry_id"/>
+            </xpath>
+
+            <xpath expr="//field[@name='vat']" position="replace">
+                <field name="source"/>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="replace"/>
+
+
+            <xpath expr="//sheet" position="before">
+                <header>
+
+                    <button name="action_validate_email"
+                            type="object"
+                            string="Validate Email"
+                            class="oe_highlight"
+                            icon="fa-check-circle"/>
+
+                    <field name="validation_state"
+                           widget="statusbar"
+                           statusbar_visible="pending,valid,invalid,error" invisible="1"/>
+
+                </header>
+
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <group string="Email Validation">
+                    <group>
+                        <field name="email_valid"
+                               readonly="1"
+                               widget="boolean_toggle"/>
+
+                        <field name="validation_msg"
+                               readonly="1"
+                               nolabel="1"
+                               colspan="4"/>
+                    </group>
+                    <group>
+                        <field name="batch"/>
+                        <field name="catch_all"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+
+    </record>
+
+
+    <record id="view_partner_form_search_inherit" model="ir.ui.view">
+        <field name="name">res.partner.search</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <filter string="Sources" name="group_by_source" context="{'group_by': 'source'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="contacts.action_contacts" model="ir.actions.act_window">
+        <field name="context">{'default_is_company': False}</field>
+    </record>
+
+</odoo>
